@@ -1,7 +1,8 @@
 //criar conexão com o banco
 const connection = require('../database/connection');
-//importa o pacote crypto, para criação de criptografia.
-const crypto = require('crypto');
+
+const generateUniqueId = require('../utils/generateUniqueId');
+
 
 module.exports = {
     //lista todos as ongs cadastradas
@@ -15,8 +16,8 @@ module.exports = {
         //criando variável para cada informação.
         const { name, email, whatsapp, city, uf } = request.body;
         
-        //usa o pacote crypto para criar um id hexadacimal
-        const id = crypto.randomBytes(4).toString('HEX');
+        //criação do id foi para outro arquivo para facilitar testes
+        const id = generateUniqueId();
 
         await connection('ongs').insert({
             id,
